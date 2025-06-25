@@ -18,7 +18,7 @@
     <apic/>
     <vmport state='off'/>
   </features>
-  <cpu mode='host-model' check='partial'/>
+  <cpu mode='host-passthrough' check='none'/>
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -99,26 +99,41 @@
       <target chassis='7' port='0x16'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x6'/>
     </controller>
+    <controller type='pci' index='8' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='8' port='0x17'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x7'/>
+    </controller>
+    <controller type='pci' index='9' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='9' port='0x18'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='pci' index='10' model='pcie-root-port'>
+      <model name='pcie-root-port'/>
+      <target chassis='10' port='0x19'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x1'/>
+    </controller>
     <controller type='virtio-serial' index='0'>
       <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
     </controller>
     <interface type='bridge'>
-      <mac address='52:54:00:dc:cc:15'/>
+      <mac address='52:54:00:38:fa:0c'/>
+      <source bridge='br1f1'/>
+      <model type='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+    </interface>
+    <interface type='bridge'>
+      <mac address='52:54:00:14:05:70'/>
       <source bridge='br-ctrl'/>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     <interface type='bridge'>
-      <mac address='52:54:00:7b:5a:7e'/>
-      <source bridge='br-ctrl'/>
+      <mac address='52:54:00:65:13:b1'/>
+      <source bridge='br-data1'/>
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
-    </interface>
-    <interface type='bridge'>
-      <mac address='52:54:00:b6:09:f0'/>
-      <source bridge='br-ctrl'/>
-      <model type='virtio'/>
-      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
     </interface>
     <serial type='pty'>
       <target type='isa-serial' port='0'>
